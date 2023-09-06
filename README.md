@@ -69,3 +69,20 @@ You will be evaluated on the following criteria:
 * Extendibility: If we needed to add additional functionality, how difficult would this be?
 * Efficiency: How well does your program handle large inputs?
 * Tests: Is your code covered by automated tests?
+
+
+TODO:
+- make skill name case insensitive
+- css formatting
+- jobseeker_id, jobseeker_name, job_id, job_title, matching_skill_count, matching_skill_percent displayed
+- matching_skill_count method on Matches
+- matching_skill_percent method on Matches when skills count == 0
+- sorting of Matches results (job_seeker_id ASC, matching_skill_percent DESC, job_id ASC)
+
+Done:
+- Jobs, JobSeekers, Skills tables
+- joins table (Matches)
+- polymorphic joins table (JobSkills)
+- table of Jobs and JobSeekers in database
+- sorting on skills for Job and JobSeeker tables
+- matching_skill_percent method on Matches

@@ -18,18 +18,28 @@ class JobMatchesController < ApplicationController
     JobSeeker.delete_all
 
     job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
-    0
     seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
-    0
 
     job_data[1..].each do |row|
       job = Job.where(id: row[0], title: row[1]).first_or_create
-      skills = row[2].split(',').split(',').map(&:strip)
+      skills = row[2].split(',').map(&:strip)
+
+      job.skills = []
+
+      skills.each do |skill|
+        job.skills << Skill.where(name: skill).first_or_create
+      end
     end
 
     seeker_data[1..].each do |row|
       seeker = JobSeeker.where(id: row[0], name: row[1]).first_or_create
-      skills = row[2].split(',').split(',').map(&:strip)
+      skills = row[2].split(',').map(&:strip)
+
+      seeker.skills = []
+
+      skills.each do |skill|
+        seeker.skills << Skill.where(name: skill).first_or_create
+      end
     end
   end
 
