@@ -1,0 +1,25 @@
+<div>
+  <table>
+    <tr>
+      <td width="150"><b>Id</b>
+      <td width="200"><b>Title</b>
+      <td width="200"><b>Skills</b>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.id %>
+        <td><%= job.title %>
+    <% end %>
+  </table>
+
+  <table>
+    <tr>
+      <td width="150"><b>Id</b>
+      <td width="200"><b>Name</b>
+      <td width="200"><b>Skills</b>
+    <% @job_seekers.each do |job_seeker| %>
+      <tr>
+        <td><%= job_seeker.id %>
+        <td><%= job_seeker.name %>
+    <% end %>
+  </table>
+</div>
