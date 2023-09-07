@@ -6,9 +6,9 @@ class JobMatchesController < ApplicationController
   before_action :load_records, only: %i[index]
 
   def index
-    @job_matches = JobMatch.order(:job_seeker_id, [matching_skill_percent: :desc], :job_id)
+    @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id)
     @jobs = Job.all
-    @job_seekers = JobSeeker.all
+    @jobseekers = Jobseeker.all
   end
 
   private
@@ -20,9 +20,9 @@ class JobMatchesController < ApplicationController
     return if job_data.empty? || seeker_data.empty?
 
     Job.destroy_all
-    JobSeeker.destroy_all
+    Jobseeker.destroy_all
 
     Job.create_from_array(job_data[1..])
-    JobSeeker.create_from_array(seeker_data[1..])
+    Jobseeker.create_from_array(seeker_data[1..])
   end
 end

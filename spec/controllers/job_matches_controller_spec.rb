@@ -19,21 +19,21 @@ RSpec.describe JobMatchesController, type: :controller do
       it 'should not load records' do
         expect(CSV).to receive(:read).exactly(2).times.and_return([])
         expect(Job).not_to receive(:destroy_all)
-        expect(JobSeeker).not_to receive(:destroy_all)
+        expect(Jobseeker).not_to receive(:destroy_all)
         expect(Job).not_to receive(:create_from_array)
-        expect(JobSeeker).not_to receive(:create_from_array)
+        expect(Jobseeker).not_to receive(:create_from_array)
 
         JobMatchesController.new.send(:load_records)
 
         expect(Job.count).to eq(0)
-        expect(JobSeeker.count).to eq(0)
+        expect(Jobseeker.count).to eq(0)
       end
     end
 
     context 'csv files are not empty' do
       it 'should delete existing records' do
         expect(Job).to receive(:destroy_all)
-        expect(JobSeeker).to receive(:destroy_all)
+        expect(Jobseeker).to receive(:destroy_all)
 
         JobMatchesController.new.send(:load_records)
       end
@@ -41,7 +41,7 @@ RSpec.describe JobMatchesController, type: :controller do
       it 'should create new Jobs and Job Seekers' do
         expect(CSV).to receive(:read).exactly(2).times.and_return(csv_mock)
         expect(Job).to receive(:create_from_array).with(csv_data)
-        expect(JobSeeker).to receive(:create_from_array).with(csv_data)
+        expect(Jobseeker).to receive(:create_from_array).with(csv_data)
 
         JobMatchesController.new.send(:load_records)
       end

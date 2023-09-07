@@ -41,12 +41,12 @@
       <td width="200"><b>Name</b>
       <td width="150"><b>Matched jobs</b>
       <td><b>Skills</b>
-    <% @job_seekers.each do |job_seeker| %>
+    <% @jobseekers.each do |jobseeker| %>
       <tr>
-        <td><%= job_seeker.id %>
-        <td><%= job_seeker.name %>
-        <td><%= job_seeker.job_matches.count %>
-        <td><%= stringify_skills(job_seeker.skills) %>
+        <td><%= jobseeker.id %>
+        <td><%= jobseeker.name %>
+        <td><%= jobseeker.job_matches.count %>
+        <td><%= stringify_skills(jobseeker.skills) %>
     <% end %>
   </table>
   <br/>

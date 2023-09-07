@@ -2,7 +2,7 @@
 
 module JobMatchesHelper
   def style_match_row(match)
-    match.job_seeker_id.even? ? 'bg-white' : 'bg-grey'
+    match.jobseeker_id.even? ? 'bg-white' : 'bg-grey'
   end
 
   def style_percent_text(percent)

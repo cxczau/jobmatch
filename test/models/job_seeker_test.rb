@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class JobSeekerTest < ActiveSupport::TestCase
+class JobseekerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :job_seekers do |t|
+    create_table :jobseekers do |t|
       t.string :name
       t.timestamps
     end

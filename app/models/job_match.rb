@@ -4,14 +4,14 @@ class JobMatch < ApplicationRecord
   before_validation :set_matching_skill_percent
 
   belongs_to :job
-  belongs_to :job_seeker
+  belongs_to :jobseeker
 
   def jobseeker_id
-    job_seeker.id
+    jobseeker.id
   end
 
   def jobseeker_name
-    job_seeker.name
+    jobseeker.name
   end
 
   def job_id
@@ -23,7 +23,7 @@ class JobMatch < ApplicationRecord
   end
 
   def matching_skill_count
-    (job.skills & job_seeker.skills).length
+    (job.skills & jobseeker.skills).length
   end
 
   def set_matching_skill_percent
