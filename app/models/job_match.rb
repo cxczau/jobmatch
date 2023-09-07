@@ -34,7 +34,7 @@ class JobMatch < ApplicationRecord
 
   def calculate_matching_skill_percent
     # To prevent division by 0
-    0 if job.skills.empty?
+    return 0 if job.skills.empty?
 
     (matching_skill_count * 100 / job.skills.count)
   end

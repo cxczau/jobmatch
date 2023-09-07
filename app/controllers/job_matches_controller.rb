@@ -6,7 +6,8 @@ class JobMatchesController < ApplicationController
   before_action :load_records, only: %i[index]
 
   def index
-    @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id)
+    @job_matches = JobMatch.all.sort_by{|e| [e.jobseeker_id, 100 - e.matching_skill_percent, e.job_id]}
+    # @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id)
     @jobs = Job.all
     @jobseekers = Jobseeker.all
   end
