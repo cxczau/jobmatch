@@ -14,12 +14,13 @@ class JobMatchesController < ApplicationController
   private
 
   def load_records
-    Job.destroy_all
-    JobSeeker.destroy_all
-    JobMatch.destroy_all
-
     job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
     seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
+
+    return if job_data.empty? || seeker_data.empty?
+
+    Job.destroy_all
+    JobSeeker.destroy_all
 
     Job.create_from_array(job_data[1..])
     JobSeeker.create_from_array(seeker_data[1..])
