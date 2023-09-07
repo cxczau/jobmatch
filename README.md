@@ -73,11 +73,15 @@ You will be evaluated on the following criteria:
 
 TODO:
 - make skill name case insensitive
-- css formatting
 - jobseeker_id, jobseeker_name, job_id, job_title, matching_skill_count, matching_skill_percent displayed
-- matching_skill_count method on Matches
 - matching_skill_percent method on Matches when skills count == 0
 - sorting of Matches results (job_seeker_id ASC, matching_skill_percent DESC, job_id ASC)
+- red/green text where matches are present
+- red/orange/yellow/green for percentiles
+- css formatting
+- implement load time calc
+- improve matching efficiency (update only updated records?)
+- Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
 
 Done:
 - Jobs, JobSeekers, Skills tables
@@ -86,3 +90,4 @@ Done:
 - table of Jobs and JobSeekers in database
 - sorting on skills for Job and JobSeeker tables
 - matching_skill_percent method on Matches
+- matching_skill_count method on Matches

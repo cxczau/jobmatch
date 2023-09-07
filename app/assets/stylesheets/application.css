@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+.bg-grey{
+  background-color: #f5f5f5;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+
+.text-green{
+  color: #00a65a;
+}
+
+.text-yellow{
+  color: #869c0a;
+}
+
+.text-red{
+  color: #dd4b39;
+}
