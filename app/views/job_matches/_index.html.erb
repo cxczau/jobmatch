@@ -1,10 +1,13 @@
+<div class='centered-bar'>
+  <%= link_to 'Reload data!', 'job_matches?reload=true', class: 'reload-button' %>
+</div>
 <div>
   <table>
     <tr>
-      <td width="150"><b>jobseeker_id</b>
+      <td width="100"><b>jobseeker_id</b>
       <td width="200"><b>jobseeker_name</b>
-      <td width="200"><b>job_id</b>
-      <td width="200"><b>job_title</b>
+      <td width="100"><b>job_id</b>
+      <td width="300"><b>job_title</b>
       <td width="200"><b>matching_skill_count</b>
       <td width="200"><b>matching_skill_percent</b>
     <% @job_matches.each do |match| %>
@@ -17,4 +20,8 @@
         <td class="<%= style_percent_text(match.matching_skill_percent) %>"><%= match.matching_skill_percent %>
     <% end %>
   </table>
+  <br/>
+</div>
+<div class='centered-bar'>
+  <%= will_paginate @job_matches %>
 </div>

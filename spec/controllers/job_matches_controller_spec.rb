@@ -32,8 +32,10 @@ RSpec.describe JobMatchesController, type: :controller do
 
     context 'csv files are not empty' do
       it 'should delete existing records' do
-        expect(Job).to receive(:destroy_all)
-        expect(Jobseeker).to receive(:destroy_all)
+        expect(Job).to receive(:delete_all)
+        expect(Jobseeker).to receive(:delete_all)
+        expect(JobMatch).to receive(:delete_all)
+        expect(JobSkill).to receive(:delete_all)
 
         JobMatchesController.new.send(:load_records)
       end

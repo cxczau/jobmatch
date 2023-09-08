@@ -3,10 +3,15 @@
 require 'csv'
 
 class JobMatchesController < ApplicationController
-  before_action :load_records, only: %i[index]
+  # before_action :load_records, only: %i[index]
 
   def index
-    @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id).first(100)
+    if params[:reload]
+      load_records
+      redirect_to request.path
+    end
+
+    @job_matches = JobMatch.paginate(page: params[:page], per_page: 50).order(:jobseeker_id, [matching_skill_percent: :desc], :job_id)
   end
 
   private
