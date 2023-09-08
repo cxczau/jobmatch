@@ -19,7 +19,7 @@ class Job < ApplicationRecord
     array.each do |row|
       job = Job.create(id: row[0], title: row[1])
       Skill.add_skills_to_record(job, row[2])
-      # job.find_matches
+      job.find_matches
     end
   end
 end

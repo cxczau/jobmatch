@@ -12,10 +12,10 @@ class JobMatchesController < ApplicationController
   private
 
   def load_records
-    job_data = CSV.read(Rails.root.join('lib/jobs_large.csv'))
-    seeker_data = CSV.read(Rails.root.join('lib/jobseekers_large.csv'))
-    # job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
-    # seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
+    # job_data = CSV.read(Rails.root.join('lib/jobs_large.csv'))
+    # seeker_data = CSV.read(Rails.root.join('lib/jobseekers_large.csv'))
+    job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
+    seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
 
     return if job_data.empty? || seeker_data.empty?
 

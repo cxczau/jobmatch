@@ -12,6 +12,7 @@ Things you may want to cover:
 ```bash
   $ bundle
   $ rake db:setup
+  $ rails server
 ```
 
 ## How to run the test suite
@@ -65,9 +66,6 @@ You will be evaluated on the following criteria:
 * Efficiency: How well does your program handle large inputs?
 * Tests: Is your code covered by automated tests?
 
-TODO:
-- implement load time calc
-
 Done:
 - Jobs, Jobseekers, Skills tables
 - joins table (Matches)
@@ -79,6 +77,7 @@ Done:
 - sorting of Matches results (jobseeker_id ASC, matching_skill_percent DESC, job_id ASC)
 - red/orange/yellow/green for percentiles
 - Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
+- implement load time calc (rack-mini-profiler)
 
 Performance improvements (current _large performance is ~27s):
 - not using find_or_create_by (-1s per instance)
