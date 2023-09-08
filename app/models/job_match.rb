@@ -19,8 +19,4 @@ class JobMatch < ApplicationRecord
   def job_title
     job.title
   end
-
-  def matching_skill_count
-    (job.skills & jobseeker.skills).length
-  end
 end

@@ -3,8 +3,6 @@
 require 'csv'
 
 class JobMatchesController < ApplicationController
-  # before_action :load_records, only: %i[index]
-
   def index
     if params[:reload]
       load_records
@@ -17,10 +15,13 @@ class JobMatchesController < ApplicationController
   private
 
   def load_records
-    # job_data = CSV.read(Rails.root.join('lib/jobs_large.csv'))
-    # seeker_data = CSV.read(Rails.root.join('lib/jobseekers_large.csv'))
-    job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
-    seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
+    if params[:large]
+      job_data = CSV.read(Rails.root.join('lib/jobs_large.csv'))
+      seeker_data = CSV.read(Rails.root.join('lib/jobseekers_large.csv'))
+    else
+      job_data = CSV.read(Rails.root.join('lib/jobs.csv'))
+      seeker_data = CSV.read(Rails.root.join('lib/jobseekers.csv'))
+    end
 
     return if job_data.empty? || seeker_data.empty?
 

@@ -1,9 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my solution to the Job Match Recommendation Engine Challenge. 
+I was able to get a working solution fairly quickly and spent most of my time optimising the matching process as well as the User experience.
 
-Things you may want to cover:
+There are two options when loading the csv data:
+- Reload normal dataset: the provided .csv's
+- Reload large dataset: loads 50 jobs and 100 jobseekers
+Each time a load button is clicked, the controller will delete all existing records then redirect the User to a paginated table of all JobMatches sorted by jobseeker_id, matching_skill_percent and job_id
+
+It seems certain that additional features or an even larger dataset would result in a longer load time. To counter that the find_match method should be moved to a job queue/background worker. 
+
+Performance improvements (current _large performance is ~27s):
+- not using find_or_create_by (-1s per instance)
+- create a JobMatch only where there are matched skills, i.e. where seeker has at least one matching skill (-30s)
+  I made an assumption here that it is not useful data to give information about what Jobseekers do not have any of the required skills.
+- load Skills before find_match method (-9s)
+- store matching_skill values on the JobMatch table (-5s)
+- pagination (-9s)
+  Assumption here on how the data would be viewed by the end User. I did not think it was appropriate to load all the records, match them together then show all JobMatches on one page. 
 
 ## Ruby version
 3.1.2
@@ -11,14 +25,39 @@ Things you may want to cover:
 ## Project Setup
 ```bash
   $ bundle
-  $ rake db:setup
+  $ rake db:create
+  $ rake db:migrate
   $ rails server
 ```
+Using the following Gems:
+- will_paginate: out of the box pagination option
+- pry: for debugging
+- rspec: unit tests
+- rack-mini-profiler: provides speed badge on view
 
 ## How to run the test suite
 ```bash
   $ bundle exec rspec
 ```
+
+## Progress Notes
+
+Done:
+- Jobs, Jobseekers, Skills tables
+- joins table (JobMatches)
+- polymorphic joins table (JobSkills)
+- bulk create Jobs and Jobseekers method
+- create a Skill if it does not exist then add to a Job/Jobseeker
+- matching_skill_percent on JobMatches
+- matching_skill_count on JobMatches
+- sorting of Matches results (jobseeker_id ASC, matching_skill_percent DESC, job_id ASC)
+- red/orange/yellow/green for percentiles
+- css
+- Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
+- implement load time calc (rack-mini-profiler)
+- pagination
+- rspec tests
+- allow regular/large data set loading
 
 # Coding Challenge: Job Match Recommendation Engine
 
@@ -65,22 +104,3 @@ You will be evaluated on the following criteria:
 * Extendibility: If we needed to add additional functionality, how difficult would this be?
 * Efficiency: How well does your program handle large inputs?
 * Tests: Is your code covered by automated tests?
-
-Done:
-- Jobs, Jobseekers, Skills tables
-- joins table (Matches)
-- polymorphic joins table (JobSkills)
-- table of Jobs and Jobseekers in database
-- sorting on skills for Job and Jobseeker tables
-- matching_skill_percent method on Matches
-- matching_skill_count method on Matches
-- sorting of Matches results (jobseeker_id ASC, matching_skill_percent DESC, job_id ASC)
-- red/orange/yellow/green for percentiles
-- Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
-- implement load time calc (rack-mini-profiler)
-
-Performance improvements (current _large performance is ~27s):
-- not using find_or_create_by (-1s per instance)
-- create a JobMatch only where there are matched skills, i.e. where seeker has at least one matching skill (-30s)
-- load Skills before find_match method (-9s)
-- pagination (-9s)

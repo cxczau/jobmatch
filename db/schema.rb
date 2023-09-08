@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_094132) do
   create_table "job_matches", force: :cascade do |t|
     t.bigint "job_id"
     t.bigint "jobseeker_id"
+    t.integer "matching_skill_count"
     t.float "matching_skill_percent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

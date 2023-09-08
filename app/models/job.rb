@@ -11,7 +11,7 @@ class Job < ApplicationRecord
     Jobseeker.includes(:skills).select { |seeker| (seeker.skills & skills).any? }.each do |seeker|
       matching_skill_count = (seeker.skills & skills).length
       matching_skill_percent = (matching_skill_count * 100 / skills.count)
-      JobMatch.create(job_id: id, jobseeker_id: seeker.id, matching_skill_percent:)
+      JobMatch.create(job_id: id, jobseeker_id: seeker.id, matching_skill_percent:, matching_skill_count:)
     end
   end
 
