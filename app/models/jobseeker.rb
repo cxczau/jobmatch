@@ -8,8 +8,10 @@ class Jobseeker < ApplicationRecord
   validates_presence_of :name
 
   def find_matches
-    Job.all.each do |job|
-      JobMatch.create(job_id: job.id, jobseeker_id: id)
+    Job.includes(:skills).select { |job| (job.skills & skills).any? }.each do |job|
+      matching_skill_count = (job.skills & skills).length
+      matching_skill_percent = (matching_skill_count * 100 / job.skills.count)
+      JobMatch.create(job_id: job.id, jobseeker_id: id, matching_skill_percent:)
     end
   end
 

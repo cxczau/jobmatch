@@ -7,8 +7,8 @@ class CreateJobMatches < ActiveRecord::Migration[7.0]
       t.references :jobseeker, index: true
       t.float :matching_skill_percent
       t.timestamps
-      t.index ["job_id", "jobseeker_id"]
-      t.index ["jobseeker_id", "job_id"]
+      t.index %w[job_id jobseeker_id]
+      t.index %w[jobseeker_id job_id]
     end
   end
 end

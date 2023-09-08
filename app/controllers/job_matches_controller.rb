@@ -3,12 +3,10 @@
 require 'csv'
 
 class JobMatchesController < ApplicationController
-  # before_action :load_records, only: %i[index]
+  before_action :load_records, only: %i[index]
 
   def index
-    job_matches = JobMatch.all.sort_by { |e| [e.jobseeker_id, 100 - e.matching_skill_percentage, e.job_id] }
-    @job_matches = job_matches.first(100)
-    # @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id).first(100)
+    @job_matches = JobMatch.order(:jobseeker_id, [matching_skill_percent: :desc], :job_id).first(100)
   end
 
   private

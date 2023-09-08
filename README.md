@@ -5,24 +5,19 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Ruby version
+3.1.2
 
-* System dependencies
+## Project Setup
+```bash
+  $ bundle
+  $ rake db:setup
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+## How to run the test suite
+```bash
+  $ bundle exec rspec
+```
 
 # Coding Challenge: Job Match Recommendation Engine
 
@@ -70,18 +65,8 @@ You will be evaluated on the following criteria:
 * Efficiency: How well does your program handle large inputs?
 * Tests: Is your code covered by automated tests?
 
-
 TODO:
-- make skill name case insensitive
-- jobseeker_id, jobseeker_name, job_id, job_title, matching_skill_count, matching_skill_percent displayed
-- matching_skill_percent method on Matches when skills count == 0
-- sorting of Matches results (jobseeker_id ASC, matching_skill_percent DESC, job_id ASC)
-- red/green text where matches are present
-- red/orange/yellow/green for percentiles
-- css formatting
 - implement load time calc
-- improve matching efficiency (update only updated records?)
-- Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
 
 Done:
 - Jobs, Jobseekers, Skills tables
@@ -91,3 +76,12 @@ Done:
 - sorting on skills for Job and Jobseeker tables
 - matching_skill_percent method on Matches
 - matching_skill_count method on Matches
+- sorting of Matches results (jobseeker_id ASC, matching_skill_percent DESC, job_id ASC)
+- red/orange/yellow/green for percentiles
+- Efficiency: loop through and create all Jobs then iteratively create a Seeker then match them with all Jobs through Skills
+
+Performance improvements (current _large performance is ~27s):
+- not using find_or_create_by (-1s per instance)
+- create a JobMatch only where there are matched skills, i.e. where seeker has at least one matching skill (-30s)
+- load Skills before find_match method (-9s)
+- pagination (-9s)
