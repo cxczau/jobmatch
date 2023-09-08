@@ -9,7 +9,9 @@ class Skill < ApplicationRecord
 
   def self.add_skills_to_record(record, skills)
     parse_skills_string(skills).each do |skill|
-      record.skills << Skill.where(name: skill).first_or_create
+      found = Skill.find_by(name: skill)
+      found = Skill.create(name: skill) if found.nil?
+      record.skills << found
     end
   end
 end

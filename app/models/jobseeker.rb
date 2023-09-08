@@ -8,8 +8,8 @@ class Jobseeker < ApplicationRecord
   validates_presence_of :name
 
   def find_matches
-    Job.select { |job| (job.skills & skills).any? }.each do |job|
-      JobMatch.where(job_id: job.id, jobseeker_id: id).first_or_create
+    Job.all.each do |job|
+      JobMatch.create(job_id: job.id, jobseeker_id: id)
     end
   end
 

@@ -14,40 +14,7 @@
         <td><%= match.job_id %>
         <td><%= match.job_title %>
         <td><%= match.matching_skill_count %>
-        <td class="<%= style_percent_text(match.matching_skill_percent) %>"><%= match.matching_skill_percent %>
+        <td class="<%= style_percent_text(match.matching_skill_percentage) %>"><%= match.matching_skill_percentage %>
     <% end %>
   </table>
-  <br/>
-
-  <table>
-    <tr>
-      <td width="150"><b>Id</b>
-      <td width="200"><b>Title</b>
-      <td width="150"><b>Matched jobs</b>
-      <td><b>Skills</b>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.id %>
-        <td><%= job.title %>
-        <td><%= job.job_matches.count %>
-        <td><%= stringify_skills(job.skills) %>
-    <% end %>
-  </table>
-  <br/>
-
-  <table>
-    <tr>
-      <td width="150"><b>Id</b>
-      <td width="200"><b>Name</b>
-      <td width="150"><b>Matched jobs</b>
-      <td><b>Skills</b>
-    <% @jobseekers.each do |jobseeker| %>
-      <tr>
-        <td><%= jobseeker.id %>
-        <td><%= jobseeker.name %>
-        <td><%= jobseeker.job_matches.count %>
-        <td><%= stringify_skills(jobseeker.skills) %>
-    <% end %>
-  </table>
-  <br/>
 </div>

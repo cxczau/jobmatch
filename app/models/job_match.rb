@@ -26,6 +26,15 @@ class JobMatch < ApplicationRecord
     (job.skills & jobseeker.skills).length
   end
 
+  # def matching_skill_percentage
+  #   return 0 if job.skills.empty?
+
+  #   (matching_skill_count * 100 / job.skills.count)
+  # end
+  def matching_skill_percentage
+    matching_skill_percent
+  end
+
   def set_matching_skill_percent
     self.matching_skill_percent = calculate_matching_skill_percent
   end
