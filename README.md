@@ -91,6 +91,7 @@ jobseeker_id, jobseeker_name, job_id, job_title, matching_skill_count, matching_
 1, Alice, 4, Dev Ops Engineer, 4, 50
 2, Bob, 3, C++ Developer, 4, 100
 2, Bob, 1, Go Developer, 3, 75
+2, Bob, 1, Go Developer, 3, 75
 ...
 ```
 
