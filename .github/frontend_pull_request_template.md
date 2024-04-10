@@ -11,15 +11,15 @@ https://www.pivotaltracker.com/story/show/187274826
 > _Put an `x` in the boxes that apply._
 
 I have:
-- [x] not skipped component and e2e tests
-- [x] tested changes locally
-- [x] done my best to minimize the number of file changes (less than X)
-- [x] logically organized changes
-- [x] labelled this correctly
-- [x] handled any console errors/warnings
+- [ ] not skipped component and e2e tests
+- [ ] tested changes locally
+- [ ] done my best to minimize the number of file changes (less than  )
+- [ ] logically organized changes
+- [ ] labelled this correctly
+- [ ] handled any console errors/warnings
 
 ## Comments
 
 > _If this involves a sizable or intricate modification, initiate a discussion by explaining your rationale behind the chosen solution, detailing any alternatives considered, etc_
 
-This PR will fix a flaky test on cypress. 
+This PR will 
